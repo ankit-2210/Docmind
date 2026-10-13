@@ -20,7 +20,7 @@ import javax.naming.directory.SearchResult;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/chat")
+@RequestMapping("/api/v1/chat")
 @Tag(
         name = "Chat Management",
         description = "All chat related to api goes here"

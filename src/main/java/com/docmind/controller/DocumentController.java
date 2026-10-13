@@ -21,7 +21,7 @@ import java.util.*;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/documents")
+@RequestMapping("/api/v1/documents")
 @Tag(
         name = "Document Management",
         description = "Endpoints for uploading, listing and managing documents and their vector embeddings"
