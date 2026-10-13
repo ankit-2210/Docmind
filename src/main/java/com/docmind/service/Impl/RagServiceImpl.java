@@ -44,6 +44,7 @@ public class RagServiceImpl implements RagService {
     private final ConversationRepository conversationRepository;
 
     // To ask anything related to document
+    @Override
     public ChatResponse askQuestion(ChatRequest request, User user){
         long startTime = System.currentTimeMillis();
 
@@ -82,6 +83,7 @@ public class RagServiceImpl implements RagService {
     }
 
     // this streams
+    @Override
     public Flux<String> streamQuestionAnswer(ChatRequest request, User user) {
         log.info("Streaming query: '{}'", request.getQuestion());
 
@@ -101,6 +103,22 @@ public class RagServiceImpl implements RagService {
                 .concatWith(Flux.just("[DONE]"));
 
     }
+
+    public SearchResultDto searchSimilarChunks(SearchRequests request, User user){
+        List<Document> matchedDocs = retrieveRelevantDocuments(request.getQuery(), request.getDocumentId(), request.getTopK(), request.getSimilaritySearch(), user);
+
+        List<CitationDto> citations = matchedDocs.stream()
+                .map(this::mapToCitation)
+                .toList();
+
+        return SearchResultDto.builder()
+                .query(request.getQuery())
+                .totalMatches(citations.size())
+                .matches(citations)
+                .build();
+    }
+
+
 
 
     private String buildPrompt(@NotBlank(message = "Question cannot be empty") String question, String contextText) {
@@ -166,20 +184,6 @@ public class RagServiceImpl implements RagService {
                 });
     }
 
-
-    public SearchResultDto searchSimilarChunks(SearchRequests request, User user){
-        List<Document> matchedDocs = retrieveRelevantDocuments(request.getQuery(), request.getDocumentId(), request.getTopK(), request.getSimilaritySearch(), user);
-
-        List<CitationDto> citations = matchedDocs.stream()
-                .map(this::mapToCitation)
-                .toList();
-
-        return SearchResultDto.builder()
-                .query(request.getQuery())
-                .totalMatches(citations.size())
-                .matches(citations)
-                .build();
-    }
 
 
 

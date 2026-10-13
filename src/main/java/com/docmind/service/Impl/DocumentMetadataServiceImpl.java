@@ -137,7 +137,8 @@ public class DocumentMetadataServiceImpl implements DocumentMetadataService {
         catch (Exception e) {
             log.warn("cloud not delete vectors from vector store directly: {}", e.getMessage());
         }
-
     }
+
+
 
 }

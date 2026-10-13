@@ -29,10 +29,10 @@ import java.util.*;
 public class DocumentController {
     private final DocumentMetadataService documentMetadataService;
 
-    @GetMapping
-    public String getDocuments() {
-        return "Documents API working";
-    }
+//    @GetMapping
+//    public String getDocuments() {
+//        return "Documents API working";
+//    }
 
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(
@@ -49,7 +49,7 @@ public class DocumentController {
     }
 
 
-    //    api to upload multiple documents
+    // api to upload multiple documents
     @PostMapping(value = "/upload-multiple", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(
             summary = "Upload and index multiple documents simultaneously",

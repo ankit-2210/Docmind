@@ -3,6 +3,7 @@ package com.docmind.config;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.*;
 import org.springframework.ai.chat.memory.ChatMemory;
@@ -71,6 +72,10 @@ public class ProjectConfig {
                 );
     }
 
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
+    }
 
 
 
