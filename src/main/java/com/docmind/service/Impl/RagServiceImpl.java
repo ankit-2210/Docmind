@@ -95,7 +95,7 @@ public class RagServiceImpl implements RagService {
         String contextText = buildContextString(relevantDocuments);
 
         return chatClient.prompt()
-                .system(s-> s.param("doc_context",contextText))
+                .system(s-> s.param("doc_context", contextText))
                 .user(request.getQuestion())
                 .advisors(a -> a.param(ChatMemory.CONVERSATION_ID, request.getConversationId()))
                 .stream()
@@ -117,7 +117,6 @@ public class RagServiceImpl implements RagService {
                 .matches(citations)
                 .build();
     }
-
 
 
 
