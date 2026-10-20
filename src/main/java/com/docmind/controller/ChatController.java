@@ -28,7 +28,6 @@ import javax.naming.directory.SearchResult;
 public class ChatController {
     private final RagService ragService;
 
-
     @GetMapping
     @Operation(
             summary = "Upload and index a document(PDF, DOCX, TEXT, MD, CSV)",
@@ -37,7 +36,6 @@ public class ChatController {
     public ResponseEntity<String> uploadDocument(){
         return ResponseEntity.ok("Uploaded");
     }
-
 
     @PostMapping("/query")
     @Operation(summary = "Ask a question against all documents or a specific document with citations")

@@ -21,7 +21,7 @@ public class ChatMessage {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "conversation_id", nullable = false)
-    private  Conversation conversation;
+    private Conversation conversation;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "message_type", nullable = false)
